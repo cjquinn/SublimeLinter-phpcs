@@ -10,10 +10,10 @@
 
 """This module exports the Phpcs plugin class."""
 
-from SublimeLinter.lint import Linter
+from SublimeLinter.lint import ComposerLinter
 
 
-class Phpcs(Linter):
+class Phpcs(ComposerLinter):
     """Provides an interface to phpcs."""
 
     syntax = ('php', 'html', 'html 5')
@@ -23,6 +23,7 @@ class Phpcs(Linter):
         r'severity="(?:(?P<error>error)|(?P<warning>warning))" '
         r'message="(?P<message>.*)" source'
     )
+    composer_name = 'phpcs'
     executable = 'phpcs'
     defaults = {
         '--standard=': 'PSR2',
@@ -32,7 +33,7 @@ class Phpcs(Linter):
 
     def cmd(self):
         """Read cmd from inline settings."""
-        settings = Linter.get_view_settings(self)
+        settings = ComposerLinter.get_view_settings(self)
 
         if 'cmd' in settings:
             command = [settings.get('cmd')]
