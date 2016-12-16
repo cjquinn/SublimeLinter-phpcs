@@ -40,6 +40,7 @@ class Phpcs(ComposerLinter):
         else:
             command = self.build_cmd(['phpcs'])
 
-        command.append('--report=checkstyle')
+        if isinstance(command, list):
+            command.append('--report=checkstyle')
 
         return command
