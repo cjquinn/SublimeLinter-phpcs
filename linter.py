@@ -38,7 +38,7 @@ class Phpcs(ComposerLinter):
         if 'cmd' in settings:
             command = [settings.get('cmd')]
         else:
-            command = [self.executable_path]
+            command = self.build_cmd(['phpcs'])
 
         command.append('--report=checkstyle')
 
